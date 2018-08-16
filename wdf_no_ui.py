@@ -17,12 +17,11 @@ def windows(self):
     self.sentence = StringVar()
     entrysentence = Entry(frame1,textvarible = self.sentence)
 
-##这个读取答案文件
 def readfromfile():
     memlist = {}
     i = 1
 	## 修改文件路径
-    for line in open("read.txt"):
+    for line in open("*******"):
         memlist[i] = line
         i=i+1
     return memlist
@@ -32,6 +31,16 @@ def dictout(memlist,i):
     sentence = sentence[:-1]
     return sentence
 
+def writetofile(sen,i):
+	fo = open("pra\\1872.txt","a")
+	fo.write(str(i)+".      "+sen+"\n")
+	fo.close
+
+	
+def writetofilecorrection(dictsen,i):
+	fo = open("pra\\1872.txt","a")
+	fo.write(str(i)+".corr  "+dictsen+"\n")
+	fo.close
 
 def readfromtype(i):
     sen = input("this is the "+str(i) + "th sentence.")
@@ -44,7 +53,7 @@ def matching(sen, dictsen):
 	
 ## 文件名需要规范	
 def musicplay(i):
-    musicname = str(i)+".m4a"
+    musicname = "*******************"
     os.system(musicname)
     return 6
 
@@ -55,7 +64,10 @@ i=1
 for i in range(1,dictlen+1):
     time.sleep(musicplay(i))
     sen = readfromtype(i)
+    writetofile(sen,i)
+    
     dictsen = dictout(dictinfo,i)
+    writetofilecorrection(dictsen,i)
     diff = matching(sen,dictsen)
     print("this is the matching result")
     print(sen)
